@@ -96,7 +96,7 @@ function Annie:__init()
 						if not PW.isWindingUp then
 							if self.QREADY and self.doQ then
 								for i, minion in pairs(minionManager.objects) do
-									if PW.currentTarget ~= minion and ValidTarget(minion, 625) then
+									if minion and PW.currentTarget ~= minion and ValidTarget(minion, 625) then
 										local predHP = PW:PredictHealth(minion, GetDistance(minion)*0.5+250)
 										if predHP > 0 then
 											if predHP+5 < CalcDamage(myHero, minion, 0, (self.spellData[_Q].dmg()))then
@@ -106,7 +106,6 @@ function Annie:__init()
 									end
 								end
 							elseif self.WREADY and self.doW then
-								print("hi")
 								local pos, hit = GetFarmPosition(self.spellData[_W].range, 0.3*GetDistance(pos))
 								if pos and hit and hit >= 3 then
 									CastSkillShot(_W, pos.x, pos.y, pos.z)
